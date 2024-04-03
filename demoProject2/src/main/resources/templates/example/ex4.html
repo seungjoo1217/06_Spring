@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임리프 예제 4</title>
+</head>
+<body>
+    <h1>타임리프 예제 4</h1>
+
+    <h3>타임리프 조건문 [1] - th:if / th:unless</h3>
+
+    <pre>
+        th:if = ${조건식}
+        - 조건식이 **true** 인 경우에만
+        해당 속성이 작성된 요소를 화면에 출력
+
+        th:unless = ${조건식}
+        - 조건식이 **false**인 경우에만
+        해당 속성이 작성된 요소를 화면에 출력
+
+    </pre>
+
+    <th:block th:if="${std == null}">
+        <!-- request scope에 std 속성이 없을 경우 -->
+        <h4>std 없음</h4>
+    </th:block>
+
+    <th:block th:unless="${std == null}">
+        <!-- std != null -->
+        <!-- request scope에 std 속성이 있을 경우 -->
+        <h4>std 있음!!!</h4>
+    </th:block>
+
+    <hr>
+
+    <h3>th:if / th:unless 조건식에 변수명/값 하나만 작성한 경우</h3>
+
+    <pre>
+        if문에 작성된 값이 있으면(값 != null) -> true
+
+        if문에 작성된 값이 없으면(값 == null) -> false
+    </pre>
+
+    <h4 th:if="${std}">std 있음!!!!!!!!!!!!!!!</h4>
+
+    <!-- 출력 X -->
+    <h4 th:if="${temp}">temp 있음!!!!!!!!!!!!!</h4>
+
+    <hr><hr>
+
+    <h3>타임리프 조건문 [2] - th:switch / th:case</h3>
+
+    <!-- request 속성 "num" 값에 따라서 알맞은 case 실행 -->
+    <th:block th:switch="${num}">
+        <h4 th:case="100">AAAAAAAAAAAAAAAAA</h4>
+        <h4 th:case="200">BBBBBBBBBBBBBBBBB</h4>
+        <h4 th:case="300">CCCCCCCCCCCCCCCCC</h4>
+        <!-- th:case="*" == default (나머지인 경우) -->
+        <h4 th:case="*">나머지~....</h4>
+    </th:block>
+
+    <hr>
+
+    <h3>삼항 연산자</h3>
+    <pre>
+        - 타임리프 속성(th:)에
+        삼항연산자 ( 조건식 ? 참인경우 : 거짓인경우 ) 작성가능
+    </pre>
+
+    <h4 th:text="${std.age == 30} ? '서른' : '서른아님'">삼항연산자</h4>
+
+    <hr>
+
+    <h3>Elvis 연산자 ( ?: ) </h3>
+
+    <pre>
+        [작성법]
+        값 ?: 값이 없을 때
+
+        - 삼항 연산자에서 조건식 자리에 값(변수명)만 작성
+        (==, != 등의 연산자 사용 X)
+
+        - 우변에는 값이 없을때에 대한 값만 작성
+
+        - 조건식값이 존재하면 해당 값을 출력
+          없으면 우변을 출력
+
+        -> 해당 값이 있는지 없는지에 따라 동작하는 연산자
+    </pre>
+
+    <!-- 회원 데이터 없음 -->
+    <p th:text="${member} ?: '회원 데이터 없음'"></p>
+
+    <!-- std.toString() 결과 출력 -->
+    <p th:text="${std} ?: '학생 데이터 없음'"></p>
+
+    <hr>
+
+    <h3>No-Operation 연산자  ( 값 ?: _ )</h3>
+
+    <pre>
+        -조건식의 값이 없을 경우 (== null)
+        타임리프 코드를 해석하지 않는 연산자
+
+        - 타임리프 코드 해석 X
+        -> 일반 HTML 태그로 동작
+        -> HTML 태그 사이 내용(content)이 화면에 출력
+    </pre>
+
+    <!-- 회원 데이터 없음 -->
+    <p th:text="${member} ?: _">회원 데이터 없음</p>
+
+    <!-- std.toString() 결과 출력 -->
+    <p th:text="${std} ?: _">학생 데이터 없음</p>
+
+
+    
+</body>
+</html>

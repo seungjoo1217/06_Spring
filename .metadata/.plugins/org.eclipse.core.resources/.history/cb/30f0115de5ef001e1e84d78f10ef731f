@@ -1,0 +1,7 @@
+package edu.kh.demo.controller;
+
+// Bean : 스프링이 만들고 관리하는 객체
+
+public class exampleController {
+
+}

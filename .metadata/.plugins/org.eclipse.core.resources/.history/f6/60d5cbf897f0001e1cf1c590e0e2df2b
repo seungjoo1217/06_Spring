@@ -1,0 +1,5 @@
+spring.application.name=demoProject2
+
+
+#서버 포트 80으로 변경
+server.port=80

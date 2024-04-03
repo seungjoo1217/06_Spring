@@ -1,0 +1,6 @@
+spring.application.name=PracticeProject
+
+server.port=80
+
+spring.devtools.livereload.enabled=true
+spring.devtools.restart.enabled=true

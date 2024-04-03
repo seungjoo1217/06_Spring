@@ -1,0 +1,13 @@
+package edu.kh.demo.controller;
+
+// Java 객체 : new 연산자에 의해 Heap 영역에
+//			클래스에 작성된 내용대로 생성된 것
+
+// instance : 개발자가 만들고 관리하는 객체
+
+// Bean : Spring Container(Spring)
+
+
+public class TestContoller {
+
+}

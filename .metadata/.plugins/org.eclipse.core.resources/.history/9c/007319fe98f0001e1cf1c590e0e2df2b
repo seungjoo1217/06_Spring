@@ -1,0 +1,11 @@
+package edu.kh.demo.controller;
+
+import org.springframework.stereotype.Controller;
+
+// Controller : 요청에 따라 알맞은 서비스 호출 할지 제어
+//				+ 서비스 결과에 따라 어떤 응답을 할지 제어
+
+@Controller // IOC(제어의 역전)
+public class MainController {
+
+}

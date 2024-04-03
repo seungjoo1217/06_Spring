@@ -1,0 +1,23 @@
+package edu.kh.todo.common.config;
+
+import org.springframework.context.annotation.Configuration;
+
+/* @Configuration
+ * - 설정용 클래스임 명시
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
+
+
+
+@Configuration
+public class DBConfig {
+
+}
