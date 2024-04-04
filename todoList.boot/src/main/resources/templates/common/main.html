@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList-boot</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+
+
+    <!-- 할 일 주차 form -->
+    <form action="/todo/add" method="post">
+        <h4>할 일 추가</h4>
+
+        <div>
+            제목 : <input type="text" name="todoTitle">
+        </div>
+
+        <div>
+            <textarea name="todoContent"
+                cols="50" rows="5" placeholder="상세 내용"></textarea>
+        </div>
+
+        <button>추가하기</button>
+    </form>
+
+
+
+
+
+
+
+
+    <!-- ${#lists.size(todoList)}  ==  ${todoList.size()} -->
+    <h3 th:text="|전체 Todo 개수 : ${#lists.size(todoList)} 개 /
+        완료된 Todo 개수 : ${completeCount} 개|">내용</h3>
+
+    <table border="1">
+
+        <thead>
+            <th>번호</th>
+            <th>할 일 제목</th>
+            <th>완료 여부</th>
+            <th>등록 날짜</th>
+        </thead>
+
+        <tbody>
+            <tr th:each="todo : ${todoList}" th:object="${todo}">
+
+                <td th:text="*{todoNo}">할 일 번호</td>
+
+                <td>
+                    <a th:text="*{todoTitle}">할 일 제목</a>
+                </td>
+
+                <td th:text="*{complete}">완료 여부(Y/N)</td>
+
+                <td th:text="*{regDate}">등록일</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- footer.html 조각을 해당 위치에 대입
+        조각의 경로는 forward하듯이 접두사, 접미사 생략하고 작성
+    -->
+    <th:block th:replace="~{common/footer}"></th:block>
+</body>
+</html>

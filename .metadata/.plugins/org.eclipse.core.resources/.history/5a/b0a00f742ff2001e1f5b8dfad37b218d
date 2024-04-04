@@ -1,0 +1,30 @@
+package edu.kh.practice.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import edu.kh.practice.model.dto.Student;
+import jakarta.servlet.http.HttpServletRequest;
+
+@Controller
+public class controller {
+
+	@PostMapping("student/select")
+	public String selectStudent(HttpServletRequest req,
+								@RequestParam("name") String stdName,
+								@RequestParam("age") int stdAge,
+								@RequestParam("addr") String stdAddress
+								) {
+		
+
+		req.setAttribute("stdName", stdName);
+
+		req.setAttribute("stdAge", stdAge);
+
+		req.setAttribute("stdAddress", stdAddress);
+
+		return "student/select";
+
+		}
+}

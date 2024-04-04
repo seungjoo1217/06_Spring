@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인화면</title>
+    <title>Document</title>
 </head>
 <body>
+    <h1>학생 조회</h1>
 
-    <h1>연습용 메인화면</h1>
+    <form action="/student/select" method="POST">
 
-    <hr>
+        이름 : <input type="text" name="name"> <br>
 
-    <h3>페이지 forward</h3>
-    <a href="/test1">test1으로 forward</a>
+        나이 : <input type="number" name="age"> <br>
 
-    <hr>
-    <h3>정적 자원 연결</h3>
-    <a href="/test2">test2로 forward + 정적 자원 연결(img)</a>
+        주소 : <input type="text" name="addr"> <br>
+
+        <button>제출하기</button>
+
+    </form>
     
 </body>
 </html>

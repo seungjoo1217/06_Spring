@@ -1,0 +1,8 @@
+package edu.kh.todo.model.service;
+
+import org.apache.ibatis.annotations.Mapper;
+
+
+public interface TodoService {
+
+}

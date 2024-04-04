@@ -1,0 +1,15 @@
+package edu.kh.todo.model.service;
+
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+
+
+public interface TodoService {
+
+	/** 할 일 목록 + 완료된 할 일 개수 조회
+	 * @return
+	 */
+	Map<String, Object> selectAll();
+
+}

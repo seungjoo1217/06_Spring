@@ -1,7 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="Mapper 인터페이스 경로 작성(필수)">
+<mapper namespace="edu.kh.todo.model.mapper.TodoMapper">
+	<!-- Mapper 인터페이스 경로 작성(필수!!) 패키지명.인터페이스명 -->
 
 	<!-- 아래 태그는 mapper.xml 파일 만들자마자 삭제!!!! -->
 	<!-- <cache-ref namespace=""/> -->
+	
+	
+	<!--  <select> 태그 속성
+		
+		- id 속성 : 태그를 식별하는 값
+		(연결된 Mapper의 메서드명과 동일하게 작성해서 연결)
+		
+		- resultType : 조회 결과 한 줄(1행)을 저장하여
+					   반환할 변수/객체 자료형 지정
+		
+					   조회 결과가 여러 행이면
+					   행 별로 변수/객체 자료형으로 저장 후
+					   모아서 List 로 반환
+		
+		
+	
+	 -->
+	
+	
+	<!-- 
+		edu.kh.todo.model.mapper.TodoMapper 인터페이스의
+		selectAll() 메서드와 연결
+		=> selectAll() 메서드 호출 시 연결된 SQL 실행
+	 -->
+	 
+	 <!-- edu.kh.todo.model.dto.Todo -> Todo 라고 써도 된다 (DBConfig에서 별칭 등록 해둠) -->
+	<select id="selectAll" resultType="edu.kh.todo.model.dto.Todo">
+		SELECT TODO_NO, TODO_TITLE, TODO_CONTENT, COMPLETE,
+		TO_CHAR(REG_DATE, 'YYYY-MM-DD HH24:MI:SS') REG_DATE
+		FROM TB_TODO
+		ORDER BY TODO_NO
+	</select>
+	
+	<!-- Java의 int는 마이바티스의 _int -->
+	
+	<select id="getCompleteCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM TB_TODO
+		WHERE COMPLETE = 'Y'	
+	</select>
+	
+	<!-- 
+		parameterType : 전달 받은 값(전달 인자/매개변수)의 타입을 명시
+		-> DTO, Map인 경우 필드명/key를 입력해서 하나씩 꺼낼 수 있음
+	 -->
+	 
+	 <!-- 
+	 	mapper에서 java의 data(파라미터)를 SQL에 삽입하는 방법
+	 
+	 	1) #{변수명 | 필드명} : SQL에 삽입 시 양쪽에 '' 붙여서 삽입
+	 
+	 	2) ${변수명 | 필드명} : SQL에 삽입 시 양쪽에 '' 붙이지 않고 삽입
+	 
+	 	-> ${} 언제 사용할까?
+	 	1) 삽입할 값이 숫자인 경우 (숫자 리터럴에 '' 없음)
+	 	2) SQL문 자체가 변해야 하는 경우에 사용
+	 	
+	 	ex) SELECT MEMBER_NAME, ${key} FROM "MEMBER"
+	 	
+	 	- ${key} == ENROLL_DATE 인 경우
+	 	SELECT MEMBER_NAME, ENROLL_DATE FROM "MEMBER"
+	 	
+	 	- ${key} == MEMBER_ADDRESS 인 경우
+	 	SELECT MEMBER_NAME, MEMBER_ADDRESS FROM "MEMBER"
+	 
+	  -->
+	
+	
+	<!-- 할 일 추가 -->
+	<insert id="addTodo" parameterType="Todo">
+		INSERT INTO TB_TODO
+		VALUES(SEQ_TODO_NO.NEXTVAL, #{todoTitle}, #{todoContent}, DEFAULT, DEFAULT )
+	</insert>
+	
+	
 </mapper>
