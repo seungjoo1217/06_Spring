@@ -1,8 +1,0 @@
-# 한 줄 주석
-
-# 해당 파일에 설정 작성 시 프로젝트 전반적으로 설정이 적용됨
-
-#애플리케이션(프로그램) 이름
-spring.application.name=demoProject1
-
-server.port=80

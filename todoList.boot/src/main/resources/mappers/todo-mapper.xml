@@ -79,5 +79,31 @@
 		VALUES(SEQ_TODO_NO.NEXTVAL, #{todoTitle}, #{todoContent}, DEFAULT, DEFAULT )
 	</insert>
 	
+	<!-- 전체 할 일 개수 조회 -->
+	<select id="getTotalCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_TODO
+	</select>
+	
+	<select id="todoDetail" parameterType="Todo">
+	SELECT TODO_NO, TODO_TITLE, TODO_CONTENT, COMPLETE,
+	TO_CHAR(REG_DATE, 'YYYY-MM-DD HH24:MI:SS') REG_DATE
+	FROM TB_TODO
+	WHERE TODO_NO = #{todoNo}
+	</select>
+	
+	<delete id="todoDelete" parameterType="_int">
+		DELETE FROM TB_TODO
+		WHERE TODO_NO=#{todoNo}
+	</delete>
+	
+	<update id="changeComplete" parameterType="_int">
+		UPDATE TB_TODO
+		SET COMPLETE =
+		CASE
+			WHEN COMPLETE = 'Y' THEN 'N'
+			ELSE 'Y'
+		END
+		WHERE TODO_NO = #{todoNo}
+	</update>
 	
 </mapper>

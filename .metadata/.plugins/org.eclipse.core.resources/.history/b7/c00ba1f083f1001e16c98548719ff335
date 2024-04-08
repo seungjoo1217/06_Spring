@@ -1,8 +1,0 @@
-package edu.kh.todo.common.config;
-
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-public class DBConfig {
-
-}
