@@ -49,7 +49,9 @@ public interface TodoMapper {
 
 	int todoDelete(int todoNo);
 
-	int changeComplete(int todoNo);
+	int changeComplete(Todo todoNo);
+
+	int todoUpdate(Todo todo);
 	
 	
 	

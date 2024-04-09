@@ -1,9 +1,0 @@
-package edu.kh.demo.controller;
-
-// Controller : 요청에 따라 알맞은 서비스 호출 할지 제어
-//				+ 서비스 결과에 따라 어떤 응답을 할지 제어
-
-
-public class MainController {
-
-}

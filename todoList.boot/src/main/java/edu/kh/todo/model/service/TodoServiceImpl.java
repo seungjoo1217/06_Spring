@@ -96,7 +96,12 @@ public class TodoServiceImpl implements TodoService{
 	}
 
 	@Override
-	public int changeComplete(int todoNo) {
+	public int changeComplete(Todo todoNo) {
 		return mapper.changeComplete(todoNo);
+	}
+
+	@Override
+	public int todoUpdate(Todo todo) {
+		return mapper.todoUpdate(todo);
 	}
 }

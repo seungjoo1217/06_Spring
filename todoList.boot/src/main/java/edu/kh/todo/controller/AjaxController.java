@@ -147,10 +147,27 @@ public class AjaxController {
 		
 	}
 	
+	/*
 	@ResponseBody
 	@PutMapping("changeComplete")
 	public int changeComplete(@RequestBody int todoNo ) {
 		return service.changeComplete(todoNo);
+	}
+	*/
+	
+	//완료 여부 변경
+	@ResponseBody
+	@PutMapping("changeComplete")
+	public int changeComplete(@RequestBody Todo todo) {
+		return service.changeComplete(todo);
+	}
+	
+	
+	// 할 일 수정
+	@ResponseBody
+	@PutMapping("update")
+	public int todoUpdate(@RequestBody Todo todo) {
+		return service.todoUpdate(todo);
 	}
 
 	
