@@ -1,0 +1,29 @@
+package edu.kh.project.member.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import edu.kh.project.member.model.service.MemberService;
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@Slf4j
+@RequestMapping("mamber")
+public class MemberController {
+
+	@Autowired // 의존성 주입(DI)
+	private MemberService service;
+	
+	
+	/* [로그인]
+	 * - 특정 사이트에 아이디/비밀번호 등을 입력해서
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * */
+}

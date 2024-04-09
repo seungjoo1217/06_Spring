@@ -1,0 +1,9 @@
+package edu.kh.project.member.model.dto;
+
+// DTO(Data Transfer Object)
+// - 데이터 전달용 객체
+
+
+public class Member {
+
+}
