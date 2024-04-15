@@ -1,0 +1,15 @@
+package edu.kh.project.myPage.model.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import edu.kh.project.myPage.model.mapper.MyPageMapper;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@Transactional(rollbackFor=Exception.class) // 모든 예외 발생 시 롤백
+@RequiredArgsConstructor
+public class MyPageServiceImpl implements MyPageService{
+
+	private final MyPageMapper mapper;
+}
