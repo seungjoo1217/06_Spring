@@ -1,0 +1,51 @@
+package edu.kh.project.main.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import edu.kh.project.member.model.dto.Member;
+import edu.kh.project.member.model.service.MemberService;
+
+@Controller
+public class QuickController {
+	
+	@Autowired
+	private MemberService service;
+
+	@GetMapping("quick")
+	public String quick(RedirectAttributes ra,
+			Model model) {
+		
+		
+		Member inputMember = new Member();
+		inputMember.setMemberEmail("user01@kh.or.kr");
+		inputMember.setMemberPw("pass01!");
+		
+		// 로그인 서비스 호출
+				Member loginMember = service.login(inputMember);
+				
+				// 로그인 실패 시
+				if(loginMember == null) {
+					ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다");
+				}
+				
+				// 로그인 성공 시
+				if(loginMember != null) {
+					
+					// Session scope에 loginMember 추가
+					model.addAttribute("loginMember", loginMember);
+					// 1단계 : request scope에 세팅됨
+					
+					// 2단계 : 클래스 위에 @SessionAttributes() 어노테이션 때문에
+					//			session scope로 이동됨
+					
+
+				
+				
+				}
+				return "redirect:/"; // 메인페이지 재요청
+	}
+}

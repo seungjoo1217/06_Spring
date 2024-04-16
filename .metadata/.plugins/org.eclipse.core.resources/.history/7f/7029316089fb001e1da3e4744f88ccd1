@@ -1,0 +1,12 @@
+package edu.kh.project.main.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.RequiredArgsConstructor;
+
+@org.springframework.stereotype.Controller
+@RequiredArgsConstructor
+@RequestMapping("book")
+public class Controller {
+
+}

@@ -80,3 +80,115 @@ if(loginForm != null) {
     });
 }
 
+// ------------------------------------------------
+
+/* 빠른 로그인 */
+
+const quickLoginBtns = document.querySelectorAll(".quick-login");
+
+
+quickLoginBtns.forEach( (item, index) => {
+    // item : 현재 반복 시 꺼내온 객체
+    // index : 현재 반복 중인 인덱스
+
+    // quickLoginBtns 요소인 button 태그 하나씩 꺼내서 이벤트 리스너 추가
+    item.addEventListener("click", () => {
+
+        const email = item.innerText; // 버튼에 작성된 이메일 얻어오기
+
+        location.href = "/member/quickLogin?memberEmail=" + email;
+    });
+});
+
+const selectMemberList = document.getElementById("selectMemberList");
+const tbody = document.getElementById("memberList");
+
+ selectMemberList.addEventListener("click", () => {
+    tbody.innerHTML = "";
+    
+    fetch("/member/selectMemberList")
+    .then(resp => resp.text())
+    .then(result => {
+
+        const memberList = JSON.parse(result);
+        
+
+        if(memberList == null) {
+            memberList.innerText = "회원이 존재하지 않습니다.";
+        } else {
+            memberList.forEach( (member) => {
+                let arr = [member.memberNo,
+                            member.memberEmail,
+                            member.memberNickname,
+                            member.memberDelFl];
+
+                const tr = document.createElement("tr");
+                for(let key of arr){
+                    const td = document.createElement("td");
+                    td.innerText = key;
+                    tr.append(td);
+                }
+                tbody.append(tr);
+            });
+        }
+    });
+ });
+
+
+ const resetMemberNo = document.querySelector("#resetMemberNo");
+ const resetPw = document.querySelector("#resetPw");
+
+ resetPw.addEventListener("click", () => {
+    const memberNo = resetMemberNo.value;
+
+    if(resetMemberNo.value.trim().length === 0) {
+        alert("번호를 입력해 주세요");
+        return;
+    } else {
+        fetch("/member/resetPw", {
+            method : "PUT", // PUT : 수정 요청 방식
+            headers : {"Content-Type" : "application/json"},
+            body : memberNo
+        })
+        .then(resp => resp.text())
+        .then(result => {
+    
+            if(result > 0) {
+                alert("초기화 성공!")
+                resetMemberNo.value = "";
+            } else {
+                alert("해당 회원이 존재하지 않습니다 :-(");
+                resetMemberNo.value = "";
+            }
+    
+    
+        });
+
+    }
+ });
+
+ const restorationMemberNo = document.querySelector("#restorationMemberNo");
+ const restorationBtn = document.querySelector("#restorationBtn");
+
+ restorationBtn.addEventListener("click", () => {
+
+    if(restorationMemberNo.value.trim().length === 0) {
+        alert("번호를 입력해 주세요");
+    } else {
+        fetch("/member/restoration?memberNo=" + restorationMemberNo.value)
+        .then(resp => resp.text())
+        .then(result => {
+    
+            if(result > 0) {
+                alert("탈퇴 복구 성공!")
+                resetMemberNo.value = "";
+            } else {
+                alert("탈퇴한 회원이 아닙니다");
+                resetMemberNo.value = "";
+            }
+    
+    
+        });
+
+    }
+ });

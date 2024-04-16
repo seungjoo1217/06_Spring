@@ -53,8 +53,27 @@
 
         </pre>
 
-     	
+        <form action="/myPage/file/test1"
+              method="POST"
+              enctype="multipart/form-data"
+        >
+          <h3>업로드 테스트 1</h3>
+
+          <!-- type="file"도 결국에는 Parameter
+             -> @RequestParam으로 처리 가능
+          -->
+          <input type="file" name="uploadFile">
+
+          <button class="myPage-submit">제출하기</button>
+        </form>
         
+        <!-- a 태그의 download 속성
+          - href 속성에 작성된 요청에 대한 응답을 다운로드함
+        -->
+        <a th:if="${path != null}"
+           th:text="${path}"
+           th:href="${path}"></a>
+        <a download>업로드한 파일</a>
 
 
       </section>

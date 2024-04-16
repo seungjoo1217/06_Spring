@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.kh.project.email.model.mapper.EmailMapper">
+<mapper namespace="edu.kh.project.member.model.mapper.MemberMapper">
+	<!--  namespace에 연결할 Mapper 인터페이스 패키지명+인터페이스명 작성
+		-> 매퍼 인터페이스 메서드 호출 시
+		xml 파일에 작성된 태그중 메서드명과 같은 id를 가진 SQL이 수행됨
+	 -->
+	 
+	 <!--  parameterType 속성은 필수 속성 아님!
+	 	왜 ? TypeHandler 를 이용해서 자료형을 판별할 수 있음
+	  -->
+
+	<!-- 로그인 -->
+	<select id="login" resultType="Member">
+		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_PW,
+		MEMBER_TEL, MEMBER_ADDRESS, PROFILE_IMG, AUTHORITY,
+		TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE
+		FROM "MEMBER"
+		WHERE MEMBER_EMAIL = #{memberEmail}
+		AND MEMBER_DEL_FL = 'N'
+	</select>
+	
+	<!-- 이메일 중복 검사 -->
+	<select id="checkEmail" resultType = "_int">
+		SELECT COUNT(*)
+		FROM "MEMBER"
+		WHERE MEMBER_DEL_FL = 'N'
+		AND MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
+	<select id="selectMemberList">
+		SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_NICKNAME, MEMBER_DEL_FL
+		FROM "MEMBER"
+	</select>
+	
+	<update id="resetPw">
+		UPDATE "MEMBER" SET
+		MEMBER_PW = #{encPw}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="restoration">
+		UPDATE "MEMBER" SET
+		MEMBER_DEL_FL = 'N'
+		WHERE MEMBER_NO = #{memberNo}
+		AND MEMBER_DEL_FL = 'Y'
+	</update>
+	
 	
 	
 </mapper>

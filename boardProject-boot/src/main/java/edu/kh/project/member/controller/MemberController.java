@@ -1,10 +1,14 @@
 package edu.kh.project.member.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import edu.kh.project.member.model.dto.Member;
 import edu.kh.project.member.model.service.MemberService;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
@@ -153,8 +156,44 @@ public class MemberController {
 		return service.checkEmail(memberEmail);
 	}
 	
+	@GetMapping("quickLogin")
+	public String quickLogin(
+			@RequestParam("memberEmail") String memberEmail,
+			Model model,
+			RedirectAttributes ra
+			) {
+		
+		Member loginMember = service.quickLogin(memberEmail);
+		
+		if( loginMember == null) {
+			ra.addFlashAttribute("message", "해당 이메일이 존재하지 않습니다.");
+		} else {
+			model.addAttribute("loginMember", loginMember);
+		}
+		
+		return "redirect:/";
+		
+	}
 	
+	@ResponseBody
+	@GetMapping("selectMemberList")
+	public List<Member> selectMemberList() {
+		List<Member> memberList = service.selectMemberList();
+		
+		return memberList;
+	}
 	
+	@ResponseBody
+	@PutMapping("resetPw")
+	public int resetPw(@RequestBody int memberNo) {
+		return service.resetPw(memberNo);
+	}
+	
+	@ResponseBody
+	@GetMapping("restoration")
+	public int restoration(@RequestParam("memberNo") int memberNo) {
+		return service.restoration(memberNo);
+	}
 	
 	
 	

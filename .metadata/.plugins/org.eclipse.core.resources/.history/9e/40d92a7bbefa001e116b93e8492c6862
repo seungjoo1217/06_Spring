@@ -1,9 +1,0 @@
-package edu.kh.project.myPage.model.service;
-
-import org.springframework.stereotype.Service;
-
-@Service
-@Transactinal
-public class MyPageServiceImpl implements MyPageService{
-
-}

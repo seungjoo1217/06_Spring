@@ -1,0 +1,66 @@
+package edu.kh.project.main.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import edu.kh.project.member.model.dto.Member;
+import jakarta.servlet.http.Cookie;
+
+@Controller
+public class QuickController {
+
+	@GetMapping("quick")
+	public String quick() {
+		
+		Member inputMember = new Member();
+		inputMember.setMemberEmail("user01@kh.or.kr");
+		inputMember.setMemberPw("pass01!");
+		
+		// 로그인 서비스 호출
+				Member loginMember = service.login(inputMember);
+				
+				// 로그인 실패 시
+				if(loginMember == null) {
+					ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다");
+				}
+				
+				// 로그인 성공 시
+				if(loginMember != null) {
+					
+					// Session scope에 loginMember 추가
+					model.addAttribute("loginMember", loginMember);
+					// 1단계 : request scope에 세팅됨
+					
+					// 2단계 : 클래스 위에 @SessionAttributes() 어노테이션 때문에
+					//			session scope로 이동됨
+					
+					// ********************************************
+					
+					// 아이디 저장(Cookie)
+					
+					// 쿠키 객체 생성 (K:V)
+					Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
+					// saveId=user01@kh.or.kr
+					
+					// 클라이언트가 어떤 요청을 할 때 쿠키가 첨부될지 지정
+					
+					// ex) "/" : IP 또는 도메인 또는 localhost
+					//			  뒤에 "/" --> 메인페이지 + 그 하위 주소 모두
+					cookie.setPath("/");
+					
+					// 만료 기간 지정
+					if(saveId != null) { // 아이디 저장 체크 시
+						cookie.setMaxAge(60 * 60 * 24 * 30); // (초 단위로 지정)
+					} else { // 미체크 시
+						cookie.setMaxAge(0); // 0초 (클라이언트 쿠키 삭제)
+					}
+					
+					// 응답 객체에 쿠키 추가 -> 클라이언트로 전달
+					resp.addCookie(cookie);
+					
+				}
+				
+				
+				return "redirect:/"; // 메인페이지 재요청
+	}
+}
