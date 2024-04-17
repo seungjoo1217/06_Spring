@@ -1,0 +1,9 @@
+package edu.kh.project.myPage.model.dto;
+
+public class UploadFile {
+
+	private int fileNo;
+	private String filePath;
+	private String fileOriginalName;
+	private String fileRename;
+}
