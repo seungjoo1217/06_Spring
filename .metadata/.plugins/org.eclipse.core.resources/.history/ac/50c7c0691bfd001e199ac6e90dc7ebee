@@ -1,0 +1,16 @@
+package edu.kh.project.common.config;
+
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Configuration;
+
+import edu.kh.project.common.filter.LoginFilter;
+
+/* 만들어놓은 LofinFilter 클래스가 언제 적용될지 설정 */
+
+@Configuration // 서버가 켜질 때 해당 클래스 내 모든 메서드가 실행됨
+public class FilterConfig {
+
+	public FilterRegistrationBean<LoginFilter> loginFilter() {
+		// FilterRegistrationBean : 필터를 Bean으로 등록하는 객체
+	}
+}

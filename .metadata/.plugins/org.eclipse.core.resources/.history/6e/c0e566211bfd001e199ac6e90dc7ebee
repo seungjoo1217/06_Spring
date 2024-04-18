@@ -1,0 +1,7 @@
+package edu.kh.project.common.config;
+
+/* 만들어놓은 LofinFilter 클래스가 언제 적용될지 설정 */
+
+public class FilterConfig {
+
+}

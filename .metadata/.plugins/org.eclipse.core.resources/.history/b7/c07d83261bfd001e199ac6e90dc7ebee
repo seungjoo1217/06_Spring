@@ -1,0 +1,10 @@
+package edu.kh.project.common.config;
+
+import org.springframework.context.annotation.Configuration;
+
+/* 만들어놓은 LofinFilter 클래스가 언제 적용될지 설정 */
+
+@Configuration
+public class FilterConfig {
+
+}
