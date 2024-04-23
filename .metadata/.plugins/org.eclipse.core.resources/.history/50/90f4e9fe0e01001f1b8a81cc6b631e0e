@@ -1,0 +1,7 @@
+package edu.kh.project.board.model.dto;
+
+public class BoardImg {
+
+	private int imgNo;
+	private String imgPath;
+}
