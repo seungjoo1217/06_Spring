@@ -1,6 +1,0 @@
-package edu.kh.project.common.util;
-
-// 프로그램 전체적으로 사용될 유용한 기능 모음
-public class Utility {
-
-}
