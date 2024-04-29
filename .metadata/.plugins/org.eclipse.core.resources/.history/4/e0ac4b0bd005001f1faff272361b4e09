@@ -1,0 +1,16 @@
+package edu.kh.project.board.controller;
+
+import org.springframework.stereotype.Controller;
+
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
+
+@Controller // Controller 명시 + Bean으로 등록
+public class CommentController {
+
+}

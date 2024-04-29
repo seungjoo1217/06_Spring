@@ -1,0 +1,19 @@
+package edu.kh.project.board.controller;
+
+import org.springframework.stereotype.Controller;
+
+/* @RestConroller (REST API 구축을 위해서 사용하는 컨트롤러)
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
+
+@Controller // Controller 명시 + Bean으로 등록
+public class CommentController {
+
+	// fetch - 비동기요청
+	// "comment" 요청이 오면 해당 컨트롤러에서 잡아서 처리함
+	// @ResponseBody를 매번 메서드에 추가..
+}

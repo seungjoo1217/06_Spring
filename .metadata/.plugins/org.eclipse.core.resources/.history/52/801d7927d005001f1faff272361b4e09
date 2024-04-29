@@ -1,0 +1,18 @@
+package edu.kh.project.board.controller;
+
+import org.springframework.stereotype.Controller;
+
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
+
+@Controller // Controller 명시 + Bean으로 등록
+public class CommentController {
+
+	// fetch - 비동기요청
+	// "comment" 요청이 오면 해당 컨트롤러에서 잡아서 처리함
+}

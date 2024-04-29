@@ -1,0 +1,40 @@
+package edu.kh.project.board.controller;
+
+import java.lang.ProcessBuilder.Redirect;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
+import edu.kh.project.board.model.service.EditBoardService;
+import edu.kh.project.member.model.dto.Member;
+import lombok.AllArgsConstructor;
+
+@Controller
+@AllArgsConstructor
+public class EditBoardController {
+	
+	private final EditBoardService service;
+
+	/** 게시글 수정 화면 전환
+	 * @param boardCode
+	 * @param boardNo
+	 * @param loginMember
+	 * @param model
+	 * @param ra
+	 * @return
+	 */
+	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
+	public String boardUpdate(
+				@PathVariable("boardCode") int boardCode,
+				@PathVariable("boardNo") int boardNo,
+				@SessionAttribute("loginMember") Member loginMember,
+				Model model,
+				Redirect ra
+			) {
+		
+		return "";
+	}
+}
